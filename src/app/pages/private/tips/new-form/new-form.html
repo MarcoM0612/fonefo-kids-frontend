@@ -6,7 +6,7 @@
     class="form form-login"
 >
     <div class="container-form">
-        <h1>CREA TU TIP</h1>
+        <h1>Crea tu Tip</h1>
         <!-- Título -->
         <div class="field">
             <label for="titulo">Título:</label><br>
@@ -30,17 +30,28 @@
             <select formControlName="tipo" id="tipo-tips">
                 <option value="">Selected..</option>
                 <option value="motricidad">Motricidad</option>
-                <option value="Lectura">Lectura</option>
-                <option value="juego">Juego</option>
+                <option value="lectura">Lectura</option>
+                <option value="uso">Uso</option>
                 <option value="educativo">Educativo</option>
+                <option value="seguridad">Seguridad</option>
+                <option value="psicomotor">Psicomotor</option>
+                <option value="juego">Juego</option>
+                
             </select>
         </div>
 
 
         <!-- Edad recomendada -->
         <div class="field">
-            <label for="edad">Edad recomendada:</label><br>
-            <input type="text" id="edad" formControlName="edad" placeholder="Ej. 3 a 5 años" required><br><br>
+            <label for="edad-recomendada">Edad recomendada:</label><br>
+            <select formControlName="edadRecomendada" id="edad-recomendada">
+                <option value="">Selected..</option>
+                <option value="0-12 meses">0-12 Meses</option>
+                <option value="1-3 años">1-3 Años</option>
+                <option value="2-5 años">2-5 Años</option>
+                <option value="5-12 años">5-12 Años</option>
+            </select>
+            
         </div>
 
 
@@ -53,7 +64,14 @@
         <!-- Autor -->
         <div class="field">
             <label for="autor">Autor:</label><br>
-            <input type="text" id="autor" formControlName="autor" required><br><br>
+            <select formControlName="autor" id="Autor-tips">
+                <option value="">Selected..</option>
+                @for (objUsers of users; track $index) {
+                    <option [value]="objUsers._id">{{objUsers.name}}</option>
+                }
+                
+
+            </select>
         </div>
 
         <!-- Botón -->
