@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Users } from '../../../../services/users';
+import { Tip } from '../../../../services/tip';
+
 
 
 @Component({
@@ -13,7 +15,10 @@ export class tipNewForm {
   formData!: FormGroup;
   users: any = [];
 
-  constructor( private userServices: Users ) {
+  constructor( 
+    private userServices: Users,
+    private tipService: Tip
+  ) {
     this.formData = new FormGroup({
       titulo: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50) ]),
       contenido: new FormControl('', [ Validators.required, Validators.minLength(5) ]),
@@ -33,6 +38,17 @@ export class tipNewForm {
 
     if ( this.formData.valid ) {
       console.log(this.formData.value);
+      this.tipService.registerTip( this.formData.value ).subscribe({
+        next: ( data ) => {
+          console.log( data )
+        },
+        error: ( error ) => {
+          console.error ( error )
+        },
+        complete: () => {
+          this.formData.reset()  // limpia los datos del  formulario
+        }
+      })
     }
     this.formData.reset();
   }

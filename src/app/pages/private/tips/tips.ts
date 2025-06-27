@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Tip } from '../../../services/tip';
+
 
 
 @Component({
@@ -8,4 +10,23 @@ import { Component } from '@angular/core';
   styleUrl: './tips.css'
 })
 export class Tips {
+  constructor( private tipService: Tip  ){}
+
+//Usamos este ciclo de vida para obtener los datos en el momento que se inicializa el componente
+
+  ngOnInit() {
+    this.tipService.getTips().subscribe({
+      next: ( data ) => {
+        console.log( data )
+      },
+      error: ( error ) => {
+        console.error ( error )
+      },
+      complete: () => {
+        console.log( 'complete')
+      }
+    })
+  }
+
+
 }
