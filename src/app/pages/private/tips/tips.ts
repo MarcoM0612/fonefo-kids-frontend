@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Tip } from '../../../services/tip';
-import { JsonPipe } from '@angular/common';
 
 
 
