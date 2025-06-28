@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Users } from '../../../../services/users';
 import { Tip } from '../../../../services/tip';
-import { Route, Router } from '@angular/router';
+import { Router} from '@angular/router';
 
 
 
@@ -43,6 +43,7 @@ export class tipNewForm {
       this.tipService.registerTip( this.formData.value ).subscribe({
         next: ( data ) => {
           console.log( data )
+          this.router.navigate (['admin', 'tips']) 
         },
         error: ( error ) => {
           console.error ( error )
@@ -60,7 +61,6 @@ export class tipNewForm {
     this.userServices.getUsers().subscribe({
       next: ( data ) => {
         console.log (data);
-        this.router.navigateByUrl('/tips')
         this.users = data;
       },
       error: ( error ) => {

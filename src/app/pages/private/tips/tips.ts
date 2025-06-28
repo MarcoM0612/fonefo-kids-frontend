@@ -3,6 +3,7 @@ import { Tip } from '../../../services/tip';
 
 
 
+
 @Component({
   selector: 'app-tips',
   imports: [],
@@ -17,6 +18,10 @@ export class Tips {
 //Usamos este ciclo de vida para obtener los datos en el momento que se inicializa el componente
 
   ngOnInit() {
+    this.onLoadData()
+  }
+
+  onLoadData(){
     this.tipService.getTips().subscribe({
       next: ( data ) => {
         console.log( data )
@@ -31,5 +36,25 @@ export class Tips {
     })
   }
 
+  onDelete ( id: string )  { 
+    this.tipService.deleteTip( id ).subscribe ({
+      next:( data ) => {
+        console.log( data )
+        this.onLoadData()
+      },
+      error: (error) => {
+        console.error( error )
+      },
+      complete: () => {}
+    })
+  }
+
+  onHandleDelete( event: KeyboardEvent, id: string ){
+    if ( event.key ==='Enter' || event.key === ' '){
+      event.preventDefault(),
+      this.onDelete( id )
+    }
+  }
 
 }
+  

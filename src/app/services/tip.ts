@@ -17,4 +17,8 @@ export class Tip {
     return this.http.get('http://localhost:3000/api/tips')
   }
 
+  deleteTip (id: string ) {
+    return this.http.delete( 'http://localhost:3000/api/tips/' + id )
+  }
+
 }

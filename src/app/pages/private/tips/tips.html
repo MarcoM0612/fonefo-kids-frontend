@@ -38,7 +38,14 @@
                     <td>{{ tips.autor.name }}</td>
                     <td>
                         <a class="btn btn-primary" href="#">Edit</a>
-                        <a class="btn btn-secondy" href="#">Delete</a>
+                        <a  
+                            class="btn btn-secondy" 
+                            href="#"
+                            tabindex="0"
+                            role="button"
+                            (keydown)="onHandleDelete($event, tips._id )"
+                            (click)="onDelete( tips._id); $event.preventDefault()"
+                        >Delete</a>
                     </td>
                 </tr>
                 }
