@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Tip } from '../../../services/tip';
+import { JsonPipe } from '@angular/common';
 
 
 
@@ -10,6 +11,8 @@ import { Tip } from '../../../services/tip';
   styleUrl: './tips.css'
 })
 export class Tips {
+  tips: any = []
+
   constructor( private tipService: Tip  ){}
 
 //Usamos este ciclo de vida para obtener los datos en el momento que se inicializa el componente
@@ -18,6 +21,7 @@ export class Tips {
     this.tipService.getTips().subscribe({
       next: ( data ) => {
         console.log( data )
+        this.tips = data
       },
       error: ( error ) => {
         console.error ( error )

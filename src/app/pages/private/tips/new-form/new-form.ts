@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Users } from '../../../../services/users';
 import { Tip } from '../../../../services/tip';
+import { Route, Router } from '@angular/router';
 
 
 
@@ -17,7 +18,8 @@ export class tipNewForm {
 
   constructor( 
     private userServices: Users,
-    private tipService: Tip
+    private tipService: Tip, 
+    private router: Router
   ) {
     this.formData = new FormGroup({
       titulo: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50) ]),
@@ -58,6 +60,7 @@ export class tipNewForm {
     this.userServices.getUsers().subscribe({
       next: ( data ) => {
         console.log (data);
+        this.router.navigateByUrl('/tips')
         this.users = data;
       },
       error: ( error ) => {

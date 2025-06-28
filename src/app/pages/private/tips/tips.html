@@ -1,0 +1,50 @@
+<div class="page-tips-list">
+    <h1>Product List</h1>
+
+    <!-- <pre>{{ products | json }}</pre> -->
+
+    <div class="tip-list">
+        <table border="1">
+            <thead>
+                <!-- <th>
+                    Imagen
+                </th> -->
+                <th>
+                    Titulo
+                </th>
+                <th>
+                    Contenido
+                </th>
+                <th>
+                    Tipo
+                </th>
+                <th>
+                    Edad Recomendada
+                </th>
+                <th>
+                    Autor
+                </th>
+            </thead>
+            <tbody>
+                @for ( tips of tips; track $index ) {
+                <tr>
+                    <!-- <td>
+                        <img class="tip-image" [src]="tips.urlImage" [alt]="tips.name">
+                    </td> -->
+                    <td>{{ tips.titulo }}</td>
+                    <td>{{ tips.contenido }}</td>
+                    <td>{{ tips.tipo }}</td>
+                    <td>{{ tips.edadRecomendada }}</td>
+                    <td>{{ tips.autor.name }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="#">Edit</a>
+                        <a class="btn btn-secondy" href="#">Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>

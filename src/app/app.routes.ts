@@ -7,13 +7,13 @@ import { Tips } from './pages/private/tips/tips';
 import { tipNewForm } from './pages/private/tips/new-form/new-form';
 
 export const routes: Routes = [
-    { path: '', component: Home },
+    { path: 'home', component: Home },
     { path: 'login', component: Login },
     { path: 'register', component: Register},
-    { path: 'user', component: User},
-    { path: 'tips', component: Tips},
-    { path: 'new-form', component: tipNewForm },
-    { path: '**',redirectTo: '', pathMatch: 'full'},
+    { path: 'admin/user', component: User},
+    { path: 'admin/tips', component: Tips},
+    { path: 'admin/tips/new-form', component: tipNewForm },
+    { path: '**',redirectTo: 'home', pathMatch: 'full'},
     { path: '', redirectTo: 'home', pathMatch: 'full'}
     
 ];
