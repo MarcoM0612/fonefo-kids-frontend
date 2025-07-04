@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,28 @@ export class AuthServices {
   }
   //verifica al usuario autenticado
   verifyAuthenticateUser(){
-    return this.http.get('http://localhost:3000/api/auth/re-new-token', {headers: this.getHeaders()})
+    return this.http.get('http://localhost:3000/api/auth/re-new-token', {headers: this.getHeaders()}).pipe(
+      map( ( data: any ) => { 
+        console.log( 'service ', data )
+        return data.token
+      }),
+      catchError(() => {
+        return of( false )
+      })
+    )
+
+    //Ejemplo para explicar xrjs
+    // return this.http.get('http://localhost:3000/api/auth/re-new-token', {headers: this.getHeaders()}).pipe( tap ( ( data ) => {
+    //   console.log( data )
+    //   return data
+    // }),
+    // map( ( newData: any ) => {
+    //   return newData.token.length
+    // }),
+    // catchError(() => {
+    //   return of( false )
+    // })
+    // ) 
   }
 
   getHeaders(){
