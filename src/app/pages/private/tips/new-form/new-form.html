@@ -1,10 +1,4 @@
-
-
-<form 
-    [formGroup]="formData" 
-    (submit)="onSubmit()"
-    class="form form-login"
->
+<form [formGroup]="formData" (submit)="onSubmit()" class="form form-login">
     <div class="container-form">
         <h1>Crea tu Tip</h1>
         <!-- Título -->
@@ -36,42 +30,17 @@
                 <option value="seguridad">Seguridad</option>
                 <option value="psicomotor">Psicomotor</option>
                 <option value="juego">Juego</option>
-                
+
             </select>
         </div>
-
-
-        <!-- Edad recomendada -->
         <div class="field">
-            <label for="edad-recomendada">Edad recomendada:</label><br>
-            <select formControlName="edadRecomendada" id="edad-recomendada">
-                <option value="">Selected..</option>
-                <option value="0-12 meses">0-12 Meses</option>
-                <option value="1-3 años">1-3 Años</option>
-                <option value="2-5 años">2-5 Años</option>
-                <option value="5-12 años">5-12 Años</option>
-            </select>
-            
-        </div>
-
-
-        <!-- Imagen -->
-        <!-- <div class="field">
-            <label for="imagen">Adjuntar imagen:</label><br>
-            <input type="file" id="imagen" name="imagen" accept="image/*" required><br><br>
-        </div> -->
-
-        <!-- Autor -->
-        <div class="field">
-            <label for="autor">Autor:</label><br>
-            <select formControlName="autor" id="Autor-tips">
-                <option value="">Selected..</option>
-                @for (objUsers of users; track $index) {
-                    <option [value]="objUsers._id">{{objUsers.name}}</option>
-                }
-                
-
-            </select>
+            <label for="">Estado</label>
+            <div class="opciones-de-estado">
+                <input [value]="true" type="radio" formControlName="state" id="estado-activo-del-tip">
+                <label for="estado-activo-del-tip">Activo</label>
+                <input [value]="false" type="radio" formControlName="state" id="estado-inactivo-del-tip">
+                <label for="estado-inactivo-del-tip">Inactivo</label>
+            </div>
         </div>
 
         <!-- Botón -->

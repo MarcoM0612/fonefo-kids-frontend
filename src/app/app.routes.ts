@@ -15,7 +15,7 @@ export const routes: Routes = [
     { path: 'dashboard', component: Dashboard, canActivate: [ authGuard ] },
     { path: 'admin/user', component: User, canActivate: [ authGuard ] },
     { path: 'admin/tips', component: Tips, canActivate: [ authGuard ]},
-    { path: 'admin/tips/new-form', component: tipNewForm, canActivate: [ authGuard ] },
+    { path: 'admin/tips/new', component: tipNewForm, canActivate: [ authGuard ] },
     { path: '**',redirectTo: 'home', pathMatch: 'full'},
     { path: '', redirectTo: 'home', pathMatch: 'full'}
     

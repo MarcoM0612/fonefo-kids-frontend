@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Tip } from '../../../services/tip';
+import { RouterLink } from '@angular/router';
 
 
 
 
 @Component({
   selector: 'app-tips',
-  imports: [],
+  imports: [ RouterLink ],
   templateUrl: './tips.html',
   styleUrl: './tips.css'
 })

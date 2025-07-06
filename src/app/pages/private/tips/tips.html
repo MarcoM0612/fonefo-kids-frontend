@@ -2,8 +2,14 @@
     <h1>Product List</h1>
 
     <!-- <pre>{{ products | json }}</pre> -->
-
+    
     <div class="tip-list">
+        <a  
+            class="" 
+            href="#"
+            role="button"
+            routerLink="/admin/tips/new"
+        >New Tip</a>
         <table border="1">
             <thead>
                 <!-- <th>
@@ -19,9 +25,6 @@
                     Tipo
                 </th>
                 <th>
-                    Edad Recomendada
-                </th>
-                <th>
                     Autor
                 </th>
             </thead>
@@ -34,7 +37,6 @@
                     <td>{{ tips.titulo }}</td>
                     <td>{{ tips.contenido }}</td>
                     <td>{{ tips.tipo }}</td>
-                    <td>{{ tips.edadRecomendada }}</td>
                     <td>{{ tips.autor.name }}</td>
                     <td>
                         <a class="btn btn-primary" href="#">Edit</a>

@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthServices } from './auth-services';
 
 @Injectable({ 
   providedIn: 'root'
 })
 export class Tip {
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient, private authService: AuthServices ) { }
 
   registerTip ( newTip: any ) {
-    return this.http.post('http://localhost:3000/api/tips', newTip  )
+    return this.http.post('http://localhost:3000/api/tips', newTip, { headers: this.authService.getHeaders() }  )
 
   }
 

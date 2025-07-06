@@ -25,8 +25,7 @@ export class tipNewForm {
       titulo: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50) ]),
       contenido: new FormControl('', [ Validators.required, Validators.minLength(5) ]),
       tipo: new FormControl('', [Validators.required]),
-      edadRecomendada: new FormControl('', [Validators.required]),
-      autor: new FormControl() //TODO: traer los datos antes de establecer las reglas. 
+      state: new FormControl( true, [Validators.required])
     });
   }
   onSubmit () {
