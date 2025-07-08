@@ -1,0 +1,90 @@
+
+
+/**footer*/
+.footer {
+    background-color: var(--color-Ocean-Green);
+    background-image: url(../../../../../public/assets/imges/Img-Decoration.png), url(../../../../../public/assets/imges/Img-Decoration2.png);
+    /* background-image: url(/assets/imges/Img-Decoration.png), url(/assets/imges/Img-Decoration2.png); */
+    display: flex;
+    background-position: top left, bottom right, top right;
+    background-size: 43rem;
+    background-repeat: no-repeat;
+    padding: 2rem 0 2rem 0;
+}
+
+.pre-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22rem;
+}
+
+.img-fonefo-kids-footer {
+    height: 7rem;
+    width: 16rem;
+}
+
+.title {
+    padding-top: 1rem;
+    text-align: left;
+    color: var(--color-Floral-White);
+    font-weight: bold;
+    font-family: var(--fuente-encabezado);
+}
+
+.menu-enlaces {
+    list-style: none;
+    padding: 0;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.80rem;
+    font-weight: 300;
+    font-size: 1.6rem;
+}
+
+.menu-enlaces a {
+    text-decoration: none;
+    color: var(--color-Floral-White);
+}
+.icons-social-networks {
+    display: flex;
+    gap: 3.8rem;
+    margin-top: 1rem;
+}
+.inons-contact {
+    display: flex;
+    align-items: center;
+    color: var(--color-Floral-White);
+    font-family: var(--fuente-cuerpo);
+    font-size: 1.6rem;
+    padding-top: 1.5rem;
+}
+.img-payment__img {
+    height: 3rem;
+    width: 5rem;
+}
+.payment-methods {
+    width: 11rem;
+    padding-top: 1rem;
+}
+.Shipping-methods {
+    display: flex;
+    padding-top: 1rem;
+    gap: 1rem;
+}
+
+.img-shipping__img {
+    height: 4rem;
+}
+
+.icons-contact {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    gap: 1rem;
+}
+.fa-solid{
+    margin-right: 1rem;
+}

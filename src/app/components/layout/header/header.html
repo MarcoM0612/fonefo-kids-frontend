@@ -1,9 +1,16 @@
-<nav class="header_search">
-    <nav class="navbar-">
-        <ul class="main-menu">
-            <li><a routerLink="admin/tips">Tips</a></li>
-            <li class="menu-item"><a class="btn btn-outline-primary btn-login" routerLink="login">Login</a></li>
-            <li class="menu-item"><a class="btn btn-outline-primary btn-login" (click)="logout()">Logout</a></li>
-        </ul>
-    </nav>
-</nav>
+<div class="main-container">
+    <header>
+        <img src="assets/imges/Logo.png " alt="Logo Fonefo Kids">
+        <nav>
+            <ul class="main-menu">
+                <li><a routerLink="home">INICIO</a></li>
+                <li> <a routerLink="catalogo">CATÁLOGO</a></li>
+                <li> <a routerLink="nosotros">NOSOTROS</a></li>
+                <li> <a routerLink="admin/tips">TIPS</a></li>
+                <li> <a routerLink="contacto">CONTACTO</a></li>
+                <li> <a class="btn btn-outline-primary btn-login" (click)="logout()">Logout</a></li>
+            </ul>
+        </nav>
+        <i class="fa-regular fa-user" routerLink="login" style="color: #333333;"></i>
+        <img src="assets/imges/Shopping-bag-icon.svg" alt="Icono de comprar">
+    </header>

@@ -1,14 +1,33 @@
+
+/* ESTILOS PARA EL HEADER */
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.4rem 6.4rem;
+}
+
+nav ul{
+    list-style: none;
+}
+
+nav ul li{
+    display: flex;
+    gap: 4.8rem;
+}
+
+nav ul a{
+    font-family: var(--fuente-encabezado);
+    color: var(--color-Dark-Charcoal);
+}
+.fa-user{
+    font-size: 3.6rem
+}
+
 .main-menu {
-    list-style: none;
-    list-style: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0;
     gap: 2rem;
-}
-
-a {
-    text-decoration: none;
-    color: black;
 }

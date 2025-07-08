@@ -7,11 +7,18 @@ import { Tips } from './pages/private/tips/tips';
 import { tipNewForm } from './pages/private/tips/new-form/new-form';
 import { Dashboard } from './pages/private/dashboard/dashboard';
 import { authGuard } from './guards/auth-guard';
+import { Catalogo } from './pages/public/catalogo/catalogo';
+import { Nosotros } from './pages/public/nosotros/nosotros';
+import { Contacto } from './pages/public/contacto/contacto';
+
 
 export const routes: Routes = [
     { path: 'home', component: Home },
     { path: 'login', component: Login },
     { path: 'register', component: Register},
+    { path: 'catalogo', component: Catalogo},
+    {path: 'nosotros', component: Nosotros},
+    {path: 'contacto', component: Contacto},
     { path: 'dashboard', component: Dashboard, canActivate: [ authGuard ] },
     { path: 'admin/user', component: User, canActivate: [ authGuard ] },
     { path: 'admin/tips', component: Tips, canActivate: [ authGuard ]},

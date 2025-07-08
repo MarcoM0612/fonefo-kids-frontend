@@ -38,6 +38,7 @@ export class Tips {
   }
 
   onDelete ( id: string )  { 
+    console.log( id )
     this.tipService.deleteTip( id ).subscribe ({
       next:( data ) => {
         console.log( data )

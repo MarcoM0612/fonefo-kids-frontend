@@ -1,4 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    /* Colores */
+    --color-Floral-White: #FFF8F1; 
+    --color-Dark-Charcoal: #333333; 
+    --color-Pastel-Orange: #FFB750;
+    --color-Purple-Navy: #545188;
+    --color-Dark-Cornflower-Blue: #254297; 
+    --color-Ocean-Green: #4BBF9E; 
+    --color-Red-Crayola: #F21D44; 
+
+    /* Tipografías */
+    --fuente-encabezado: 'Sour Gummy', sans-serif;
+    --fuente-cuerpo: 'Poppins', sans-serif;
+    --overall-fontsize: 62.5%
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.5; 
+    -webkit-text-size-adjust: 100%; 
+    font-size: var(--overall-fontsize)
+        /** 16px * 0.625 = 10px conversion en base 10 */
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    font-family: var(--fuente-cuerpo);
+    font-size: 2.4rem;
+    background-color: var(--color-Floral-White);
+    color: var(--color-Dark-Charcoal);
+}
+
+a{
+    text-decoration: none;
+}
+
+.container {
+    max-width: 96vw;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 .8rem;
+}
 
 /** CSS: Forms */
 .form h1 {

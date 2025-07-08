@@ -19,7 +19,7 @@ export class Tip {
   }
 
   deleteTip (id: string ) {
-    return this.http.delete( 'http://localhost:3000/api/tips/' + id )
+    return this.http.delete( 'http://localhost:3000/api/tips/' + id,  { headers: this.authService.getHeaders() } )
   }
 
 }
