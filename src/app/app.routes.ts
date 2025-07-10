@@ -12,6 +12,8 @@ import { Nosotros } from './pages/public/nosotros/nosotros';
 import { Contacto } from './pages/public/contacto/contacto';
 import { ProductoNuevo } from './pages/private/productos/producto-nuevo/producto-nuevo';
 import { Producto } from './services/producto';
+import { Categories } from './pages/private/categories/categories';
+import { CategoryNew } from './pages/private/categories/category-new/category-new';
 
 
 export const routes: Routes = [
@@ -26,6 +28,7 @@ export const routes: Routes = [
     { path: 'admin/tips', component: Tips, canActivate: [ authGuard ]},
     {path: 'admin/product', component: Producto, canActivate: [ authGuard ]},
     { path: 'admin/producto/new', component: ProductoNuevo , canActivate:[ authGuard ]}, 
+    { path: 'admin/category/new', component: CategoryNew , canActivate:[ authGuard ]},
     { path: 'admin/tips/new', component: tipNewForm, canActivate: [ authGuard ] },
     { path: '**',redirectTo: 'home', pathMatch: 'full'},
     { path: '', redirectTo: 'home', pathMatch: 'full'}
