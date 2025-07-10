@@ -56,20 +56,20 @@ export class tipNewForm {
   }
   
   
-  ngOnInit() {
-    this.userServices.getUsers().subscribe({
-      next: ( data ) => {
-        console.log (data);
-        this.users = data;
-      },
-      error: ( error ) => {
-        console.error( error )
-      },
-      complete: () => {
-        console.log( 'complete')
-      }
-    })
-  }
+  // ngOnInit() {
+  //   this.userServices.getUsers().subscribe({
+  //     next: ( data ) => {
+  //       console.log (data);
+  //       this.users = data;
+  //     },
+  //     error: ( error ) => {
+  //       console.error( error )
+  //     },
+  //     complete: () => {
+  //       console.log( 'complete')
+  //     }
+  //   })
+  // }
   
   ngOnDestroy() {
     console.log( 'ngOnDestroy' );

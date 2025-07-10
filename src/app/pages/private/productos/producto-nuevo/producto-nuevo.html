@@ -1,4 +1,5 @@
-<form  class="form form-login">
+
+<form [formGroup]="formData" (submit)="onSubmit()" class="form form-login">
     <div class="container-form">
         <h1>Crea tu producto</h1>
         <!-- Nombre -->
@@ -15,17 +16,17 @@
 
         <div class="field">
             <label for="price">Precio:</label>
-            <input type="number" id="price" name="price" min="0" step="0.01" placeholder="0.00">
+            <input type="number" id="price" formControlName="price" min="0" step="0.01" placeholder="0.00">
         </div>
 
         <div class="field">
             <label for="stock">Stock disponible:</label>
-            <input type="number" id="stock" name="stock" min="1" placeholder="1">
+            <input type="number" id="stock" formControlName="stock" min="1" placeholder="1">
         </div>
 
         <div class="field">
             <label for="urlImage">URL de la imagen:</label>
-                <input type="url" id="urlImage" name="urlImage" placeholder="https://...">
+            <input type="url" id="urlImage" formControlName="urlImage" placeholder="https://...">
         </div>
 
         <div class="field">
@@ -37,7 +38,31 @@
                 <label for="estado-inactivo-del-tip">Inactivo</label>
             </div>
         </div>
+        <!-- Rango de Edad -->
+        <div class="field">
+            <label for="rangoEdad">Rango de Edad:</label>
+            <select id="rangoEdad" formControlName="rangoEdad">
+                <option value="">Seleccione un rango</option>
+                <option value="0-1">0-1 años</option>
+                <option value="1-3">1-3 años</option>
+                <option value="3-5">3-5 años</option>
+                <option value="5-7">5-7 años</option>
+                <option value="7-9">7-9 años</option>
+                <option value="9+"> 9+ años</option>
+            </select>
+        </div>
 
+        <!-- Categoría -->
+        <div class="field">
+            <label for="categoria">Categoría:</label>
+                <select id="categoria" formControlName="categoria">
+                    <option value="">Seleccione una categoría</option>
+                    @for (product of products; track $index) {
+                        <option [value]="product._id">{{ product.name }}</option>
+                    }
+                </select>
+        </div>
+        
         <!-- Botón -->
         <div class="field">
             <button type="submit">Cargar producto</button>

@@ -7,13 +7,13 @@ import { AuthServices } from './auth-services';
 })
 export class Tip {
 
+
   constructor( private http: HttpClient, private authService: AuthServices ) { }
 
   registerTip ( newTip: any ) {
     return this.http.post('http://localhost:3000/api/tips', newTip, { headers: this.authService.getHeaders() }  )
-
   }
-
+  
   getTips () {
     return this.http.get('http://localhost:3000/api/tips')
   }
