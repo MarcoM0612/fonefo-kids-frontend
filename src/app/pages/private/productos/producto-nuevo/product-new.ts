@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Producto } from '../../../../services/producto';
+import { Producto } from '../../../../services/product';
 import {  Router } from '@angular/router';
-import { Categoria } from '../../../../services/categoria';
+import { Categoria } from '../../../../services/category';
 
 @Component({
   selector: 'app-producto-nuevo',
   imports: [ ReactiveFormsModule ],
-  templateUrl: './producto-nuevo.html',
-  styleUrl: './producto-nuevo.css'
+  templateUrl: './product-new.html',
+  styleUrl: './product-new.css'
 })
 export class ProductoNuevo {
   formData!: FormGroup;
