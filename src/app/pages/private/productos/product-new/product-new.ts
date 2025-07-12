@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Producto } from '../../../../services/product';
+import { Producto } from '../../../../services/product-services';
 import {  Router } from '@angular/router';
-import { Categoria } from '../../../../services/category';
+import { Categoria } from '../../../../services/category-services';
 
 @Component({
   selector: 'app-producto-nuevo',
@@ -15,7 +15,7 @@ export class ProductoNuevo {
   products: any = [];
 
   constructor (
-    private productservice: Producto,
+    private productService: Producto,
     private router: Router,
     private categiriasService: Categoria
 
@@ -42,7 +42,7 @@ export class ProductoNuevo {
       )
       console.log(this.formData.value)
       if( this.formData.valid ){
-        this.productservice.registerProduct( this.formData.value ).subscribe({
+        this.productService.registerProduct( this.formData.value ).subscribe({
           next: ( data ) => {
             console.log( data)
             this.router.navigate (['admin', 'product'])

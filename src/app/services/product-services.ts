@@ -14,14 +14,21 @@ export class Producto {
       return this.http.post( 'http://localhost:3000/api/product', newProduct, { headers: this.authService.getHeaders() } )
     }
 
+    getCategorieById( id: string ){
+    return this.http.get('http://localhost:3000/api/product/' + id, { headers: this.authService.getHeaders() } )
+  }
+
     getProduct () {
-      this.http.get( 'http://localhost:3000/api/product ')
+      return this.http.get( 'http://localhost:3000/api/product ')
     }
     
     deleteProduct ( id: string ){
-      this.http.delete( 'http://localhost:3000/api/product/' + id, { headers: this.authService.getHeaders()
-      } )
+      this.http.delete( 'http://localhost:3000/api/product/' + id, { headers: this.authService.getHeaders() } )
     }
+
+    updateCategorieById( id: string, updatedProduct: any ){
+    return this.http.patch('http://localhost:3000/api/product/' +id , updatedProduct ,{ headers: this.authService.getHeaders() } )
+  }
 
 
 
