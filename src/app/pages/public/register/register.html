@@ -1,1 +1,43 @@
-<p>register works!</p>
+<div id="register-container">
+    <div id="panel-right">
+        <div id="form-register">
+            <img id="logo" src="/assets/imges/Logo.png" alt="">
+            <h1>Crea tu cuenta</h1>
+            <form [formGroup]="registerData" (ngSubmit)="onSubmit()">
+                <input type="text" placeholder="Nombre completo" formControlName="name" required>
+                <div class="error" *ngIf="registerData.get('name')?.invalid && (registerData.get('name')?.dirty || registerData.get('name')?.touched)">
+                    <span *ngIf="registerData.get('name')?.errors?.['required']">El nombre es obligatorio</span>
+                </div>
+
+                <input type="email" placeholder="Dirección de correo electrónico" formControlName="email" required>
+                <div class="error" *ngIf="registerData.get('email')?.invalid && (registerData.get('email')?.dirty || registerData.get('email')?.touched)">
+                    <span *ngIf="registerData.get('email')?.errors?.['required']">El correo es obligatorio</span>
+                    <span *ngIf="registerData.get('email')?.errors?.['email']">Formato de correo no válido</span>
+                </div>
+
+                <input type="password" placeholder="Contraseña" formControlName="password" required>
+                <div class="error" *ngIf="registerData.get('password')?.invalid && (registerData.get('password')?.dirty || registerData.get('password')?.touched)">
+                    <span *ngIf="registerData.get('password')?.errors?.['required']">La contraseña es obligatoria</span>
+                    <span *ngIf="registerData.get('password')?.errors?.['minlength']">Debe tener al menos 8 caracteres</span>
+                </div>
+
+                <input type="password" placeholder="Confirmar contraseña" formControlName="confirmPassword" required>
+                <div class="error" *ngIf="registerData.get('confirmPassword')?.invalid && (registerData.get('confirmPassword')?.dirty || registerData.get('confirmPassword')?.touched)">
+                    <span *ngIf="registerData.get('confirmPassword')?.errors?.['required']">Confirma tu contraseña</span>
+                </div>
+                <div class="error" *ngIf="registerData.hasError('passwordsMismatch') && registerData.touched">
+                    <span>Las contraseñas no coinciden</span>
+                </div>
+
+                <button type="submit" class="btn-form" [disabled]="registerData.invalid">REGISTRARSE</button>
+            </form>
+
+            <p class="form-text">
+                ¿Ya tienes una cuenta?
+                <a [routerLink]="['/login']" routerLinkActive="router-link-active">Inicia sesión</a>
+            </p>
+        </div>
+    </div>
+    <div id="panel-left">
+    </div>
+</div>

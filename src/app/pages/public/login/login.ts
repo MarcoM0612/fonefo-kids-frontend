@@ -1,44 +1,43 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthServices } from '../../../services/auth-services';
+import { NgIf } from '@angular/common';
 
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink, NgIf],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
 export class Login {
   //se a creado el atributo FormData
-  formData!: FormGroup  // Este es el nombre del formulario
+  loginData!: FormGroup  // Este es el nombre del formulario
+  errorMessage: string = ''
 
   constructor(private authService: AuthServices, private router: Router) {
-    //Define la agrupacion de campos del formulario
-    this.formData = new FormGroup({
+    this.loginData = new  FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)])
-    })
+      password: new FormControl('', [Validators.required, Validators.minLength(8)])
+    });
   }
 
-  onSubmit() {
-    if (this.formData.valid) {
-      console.log(this.formData.value)
-
-      this.authService.loginUser(this.formData.value).subscribe({
-        next: (data:any ) => {
-          this.authService.saveLocalStorage( 'token', data.token), // almacena el token en el localStorage
-          this.router.navigateByUrl('dashboard')  // esta ruta debe existir, debe estar definida en el archivo de rutas.
+  onSubmit(){
+    if(this.loginData.valid){
+      this.authService.loginUser(this.loginData.value).subscribe({
+        next: () => {
+          this.errorMessage = ''
+          console.log(`El usuario se logeo correctamente`)
+          this.loginData.reset()
+          this.router.navigate(['/home'])
         },
         error: (error) => {
           console.error(error)
-        },
-        complete: () => {
-          this.formData.reset()
-        }
+          this.errorMessage = error.error?.error || 'Error al loguearse. Inténta nuevamente.'
+          },
+        complete: () => {this.loginData.reset()}
       })
     }
   }
-
 }
