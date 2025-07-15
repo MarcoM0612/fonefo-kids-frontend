@@ -1,48 +1,38 @@
-<form 
-    class="form form-login" 
-    [formGroup]="formData"
-    (ngSubmit)="onSubmit()"
->
-    <h1>Login</h1>
+<div id="container">
+    <div id="panel-left"></div>
+    <div id="panel-right">
+        <div id="login">
+            <img id="logo" src="/assets/imges/Logo.png" alt="">
+            <h1>Bienvenido nuevamente</h1>
+            <form [formGroup]="loginData" (ngSubmit)="onSubmit()">
+                <!-- EMAIL -->
+                <input type="email" placeholder="Dirección de correo electrónico" id="email" formControlName="email"
+                    required />
+                <div class="error"
+                    *ngIf="loginData.get('email')?.invalid && (loginData.get('email')?.dirty || loginData.get('email')?.touched)">
+                    <span *ngIf="loginData.get('email')?.errors?.['required']">El correo es obligatorio</span>
+                    <span *ngIf="loginData.get('email')?.errors?.['email']">Formato de correo no válido</span>
+                </div>
 
-    <div class="form-content">
-        <div class="field">
-            <label for="username">Username</label>
-            <input type="text" placeholder="Ej: manuela@correo.co" id="username" formControlName="email">
-            <div class="error">
-                <!-- //Valida el estado del campo actual(email) -->
-                @if ( formData.get('email')?.invalid && ( formData.get('email')?.dirty || formData.get('email')?.touched) ) {
-                    <!-- //Validar las reglas para el campo -->
-                    @if ( formData.get( 'email' )?.errors?.[ 'required' ] ) {
-                        <span>El email es obligatorio</span>
-                    }
-                    @if ( formData.get('email')?.errors?.[ 'email' ] ) {
-                        <span>Formato de correo no valido</span>
-                    }
-                }
+                <!-- PASSWORD -->
+                <input type="password" placeholder="Contraseña" id="password" formControlName="password" required />
+                <div class="error"
+                    *ngIf="loginData.get('password')?.invalid && (loginData.get('password')?.dirty || loginData.get('password')?.touched)">
+                    <span *ngIf="loginData.get('password')?.errors?.['required']">La contraseña es obligatoria</span>
+                    <span *ngIf="loginData.get('password')?.errors?.['minlength']">La contraseña debe tener mínimo 8
+                        caracteres</span>
+                </div>
+
+                <!-- BOTÓN -->
+                <button type="submit" class="btn-form" [disabled]="loginData.invalid">INICIAR SESIÓN</button>
+            </form>
+            <div id="error_backend" class="error">
+                <span *ngIf="errorMessage" class="error-message">{{ errorMessage }}</span>
             </div>
-        </div>
-        <div class="field">
-            <label for="password">Password</label>
-            <input type="password" placeholder="Ej: 123456789" id="password" formControlName="password" >
-            <div class="error">
-                <!-- //Valida el estado del campo actual(username) -->
-                @if ( formData.get('password')?.invalid && ( formData.get('password')?.dirty || formData.get('password')?.touched) ) {
-                    <!-- //Valida las reglas para el campo -->
-                    @if ( formData.get('password')?.errors?.['required'] ) {
-                        <span>El password es obligatorio</span>
-                    }
-                    @if ( formData.get('password')?.errors?.['minlength'] ) {
-                        <span>La contraseña debe tener minimo 6 caracteres</span>
-                    }
-                    @if ( formData.get('password')?.errors?.['maxlength'] ) {
-                        <span>La contraseña debe tener maximo 9 caracteres</span>
-                    }
-                }
-            </div>
-        </div>
-        <div class="field">
-            <button type="submit" [disabled]="formData.invalid">Login</button>
+            <p class="form-text">
+                ¿No tienes una cuenta?
+                <a [routerLink]="['/register']" routerLinkActive="router-link-active">Regístrate</a> 
+            </p>
         </div>
     </div>
-</form>
+</div>
