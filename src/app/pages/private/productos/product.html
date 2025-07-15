@@ -1,1 +1,47 @@
-<p>productos works!</p>
+<!-- <pre> {{ products | json }} </pre> Despliega los datos dentro del objeto --> 
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>
+                Imagen
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Descripcion
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Stoke
+            </th>
+            <th>
+                Categoria
+            </th>
+            <th>
+                Acciones
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of products; track $index) {
+        <tr>
+            <td>{{item.urlImage}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.stock}}</td>
+            <td>{{item.category.name}}</td>
+            <td>
+                <a href="#">Edit</a>
+                <a href="#">Delete</a>
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>

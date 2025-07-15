@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Categoria } from '../../../../services/category-services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category-new',
@@ -11,7 +12,7 @@ import { Categoria } from '../../../../services/category-services';
 export class CategoryNew {
   formData!:FormGroup;
 
-  constructor( private categoryService: Categoria ){
+  constructor( private categoryService: Categoria, private router: Router ){
     // Declarar formulario donde se van a agrupar los campos 
     this.formData = new FormGroup ({
 
@@ -29,6 +30,7 @@ export class CategoryNew {
         this.categoryService.registerCatergorie( this.formData.value ).subscribe({
           next: ( data ) => {
             console.log( data)
+            this.router.navigateByUrl('/admin/categories')
           },
           error: ( error ) => {
             console.error ( error )

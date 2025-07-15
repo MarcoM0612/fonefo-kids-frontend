@@ -5,13 +5,13 @@
         <!-- Nombre -->
         <div class="field">
             <label for="nombre">Nombre:</label><br>
-            <input type="text" id="nombre" formControlName="nombre" required><br><br>
+            <input type="text" id="nombre" formControlName="name" required><br><br>
         </div>
 
         <!-- Descripción -->
         <div class="field">
             <label for="descripcion">Descripción:</label><br>
-            <textarea id="descripcion" formControlName="descripcion" rows="5" cols="40" required></textarea><br><br>
+            <textarea id="descripcion" formControlName="description" rows="5" cols="40" required></textarea><br><br>
         </div>
 
         <div class="field">
@@ -41,21 +41,18 @@
         <!-- Rango de Edad -->
         <div class="field">
             <label for="rangoEdad">Rango de Edad:</label>
-            <select id="rangoEdad" formControlName="rangoEdad">
+            <select id="rangoEdad" formControlName="ageRanges">
                 <option value="">Seleccione un rango</option>
-                <option value="0-1">0-1 años</option>
-                <option value="1-3">1-3 años</option>
-                <option value="3-5">3-5 años</option>
-                <option value="5-7">5-7 años</option>
-                <option value="7-9">7-9 años</option>
-                <option value="9+"> 9+ años</option>
+                @for (item of ageRanges; track $index) {
+                    <option [value]="item._id">{{ item.label }}</option>
+                }
             </select>
         </div>
 
         <!-- Categoría -->
         <div class="field">
             <label for="categoria">Categoría:</label>
-                <select id="categoria" formControlName="categoria">
+                <select id="categoria" formControlName="category">
                     <option value="">Seleccione una categoría</option>
                     @for (product of products; track $index) {
                         <option [value]="product._id">{{ product.name }}</option>

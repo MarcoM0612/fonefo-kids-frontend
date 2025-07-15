@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { AuthServices } from './auth-services';
 
 @Injectable({
@@ -11,6 +12,7 @@ export class Producto {
   {}
 
     registerProduct ( newProduct: any ) {
+      console.log( newProduct )
       return this.http.post( 'http://localhost:3000/api/product', newProduct, { headers: this.authService.getHeaders() } )
     }
 
@@ -19,7 +21,7 @@ export class Producto {
   }
 
     getProduct () {
-      return this.http.get( 'http://localhost:3000/api/product ')
+      return this.http.get <any> ( 'http://localhost:3000/api/product ')
     }
     
     deleteProduct ( id: string ){

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Producto } from '../../../../services/product-services';
 import {  Router } from '@angular/router';
 import { Categoria } from '../../../../services/category-services';
+import { AgeRange } from '../../../../services/age-range';
 
 @Component({
   selector: 'app-producto-nuevo',
@@ -13,22 +14,24 @@ import { Categoria } from '../../../../services/category-services';
 export class ProductoNuevo {
   formData!: FormGroup;
   products: any = [];
+  ageRanges: any[] = [];
 
   constructor (
     private productService: Producto,
     private router: Router,
-    private categiriasService: Categoria
+    private categiriasService: Categoria,
+    private ageRangeService: AgeRange
 
   ) {
     this.formData = new FormGroup({
-      nombre: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50) ] ),
-      descripcion: new FormControl( '', [ Validators.required, Validators.minLength(5)]),
-      price: new FormControl( 0 , [ Validators.required, Validators.min( 0 ) ] ),
-      stock: new FormControl ( 1 , [Validators.required, Validators.min(1), Validators.max(100) ]),
+      name: new FormControl('', [] ),
+      description: new FormControl( '', []),
+      price: new FormControl( 0 , [  ] ),
+      stock: new FormControl ( 1 , []),
       urlImage: new FormControl(),
-      state: new FormControl ( true, [ Validators.required ]), 
-      rangoEdad: new FormControl ('', [ Validators.required]),
-      categoria: new FormControl  ('')
+      state: new FormControl ( true, [  ]), 
+      ageRanges: new FormControl ('', [ ]),
+      category: new FormControl  ('')
     })
   }
 
@@ -55,10 +58,28 @@ export class ProductoNuevo {
           }
         })
       }
-      this.formData.reset();
+
     }
 
     ngOnInit(){
+      this.loadCategories();
+      this.loadAgeRanges();
+    }
+
+    loadAgeRanges() {
+      this.ageRangeService.getAgeRanges().subscribe({
+        next: ( data ) => {
+          console.log( data );
+          this.ageRanges = data;
+        },
+        error: ( error ) => {
+          console.error( error );
+        },
+        complete: () => {}
+      })
+    }
+  
+    loadCategories() {
       this.categiriasService.getCategories().subscribe({
         next:( data ) => {
           console.log( data );
@@ -72,7 +93,6 @@ export class ProductoNuevo {
         }
       })
     }
-
 
 
     ngOnDestroy (){
