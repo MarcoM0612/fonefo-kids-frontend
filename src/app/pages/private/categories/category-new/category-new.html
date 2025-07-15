@@ -1,31 +1,21 @@
-<form>
+<form [formGroup]="formData" (ngSubmit)="onSubmit()">
     <div class="container-form">
         <h1>Crea una categoria</h1>
         <!-- Nombre -->
         <div class="field">
-        <label for="nombre-de-la-categoria">Nombre de la categoria</label>
-        <input type="text" name="company" id="nombre-de-la-categoria">
-    </div>
-    <!-- Descripción -->
-    <div class="field">
-        <label for="descripcion-categoria">Descripcion de la categoria</label>
-        <textarea name="description" id="descripcion-categoria"></textarea>
-    </div>
-    <!-- Autor -->
-    <div class="field">
-        <label for="categoria-autor">Categorias</label>
-        <select name="autor" id="categoria-autor">
-            <option value="">Seleccione</option>
-            <option value="">categoria 1</option>
-            <option value="">categoria 2</option>
-            <option value="">categoria 3</option>
-        </select>
-    </div>
-    <div class="field">
-        <button>Registrar categoria</button>
-    </div>
+            <label for="nombre-de-la-categoria">Nombre de la categoria</label>
+            <input type="text" formControlName="name" id="nombre-de-la-categoria">
+        </div>
+        <!-- Descripción -->
+        <div class="field">
+            <label for="descripcion-categoria">Descripcion de la categoria</label>
+            <textarea formControlName="description" id="descripcion-categoria"></textarea>
+        </div>
+        <div class="field">
+            <button type="submit">Registrar categoria</button>
+        </div>
 
     </div>
-    
+
 
 </form>

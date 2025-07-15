@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Tip } from '../../../services/tip';
+import { Tip } from '../../../services/tip-services';
 import { RouterLink } from '@angular/router';
 
 

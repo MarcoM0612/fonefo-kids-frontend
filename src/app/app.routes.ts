@@ -10,8 +10,8 @@ import { authGuard } from './guards/auth-guard';
 import { Catalogo } from './pages/public/catalogo/catalogo';
 import { Nosotros } from './pages/public/nosotros/nosotros';
 import { Contacto } from './pages/public/contacto/contacto';
-import { ProductoNuevo } from './pages/private/productos/producto-nuevo/product-new';
-import { Producto } from './services/product';
+import { ProductoNuevo } from './pages/private/productos/product-new/product-new';
+import { Producto } from './services/product-services';
 import { CategoryNew } from './pages/private/categories/category-new/category-new';
 
 

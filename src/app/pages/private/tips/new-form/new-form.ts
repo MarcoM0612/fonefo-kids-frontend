@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Users } from '../../../../services/users';
-import { Tip } from '../../../../services/tip';
+import { Tip } from '../../../../services/tip-services';
 import { Router} from '@angular/router';
 
 
