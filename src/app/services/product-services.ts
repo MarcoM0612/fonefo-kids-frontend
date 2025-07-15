@@ -25,7 +25,7 @@ export class Producto {
     }
     
     deleteProduct ( id: string ){
-      this.http.delete( 'http://localhost:3000/api/product/' + id, { headers: this.authService.getHeaders() } )
+      return this.http.delete( 'http://localhost:3000/api/product/' + id, { headers: this.authService.getHeaders() } )
     }
 
     updateCategorieById( id: string, updatedProduct: any ){
