@@ -24,12 +24,12 @@ export class ProductoNuevo {
 
   ) {
     this.formData = new FormGroup({
-      name: new FormControl('', [] ),
-      description: new FormControl( '', []),
-      price: new FormControl( 0 , [  ] ),
+      name: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)] ),
+      description: new FormControl( '', [Validators.required, Validators.minLength(5)]),
+      price: new FormControl( 0 , [ Validators.required ] ),
       stock: new FormControl ( 1 , []),
       urlImage: new FormControl(),
-      state: new FormControl ( true, [  ]), 
+      state: new FormControl ( true, [ Validators.required ]), 
       ageRanges: new FormControl ('', [ ]),
       category: new FormControl  ('')
     })

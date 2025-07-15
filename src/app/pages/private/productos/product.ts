@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Producto } from '../../../services/product-services';
-import { JsonPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 
