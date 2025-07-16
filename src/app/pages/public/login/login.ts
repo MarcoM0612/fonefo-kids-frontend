@@ -26,7 +26,8 @@ export class Login {
   onSubmit(){
     if(this.loginData.valid){
       this.authService.loginUser(this.loginData.value).subscribe({
-        next: () => {
+        next: ( data ) => {
+          console.log( data );
           this.errorMessage = ''
           console.log(`El usuario se logeo correctamente`)
           this.loginData.reset()
