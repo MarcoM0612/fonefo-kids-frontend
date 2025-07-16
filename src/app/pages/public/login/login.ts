@@ -26,11 +26,20 @@ export class Login {
   onSubmit(){
     if(this.loginData.valid){
       this.authService.loginUser(this.loginData.value).subscribe({
-        next: () => {
+        next: ( isAuthenticated ) => {
+          console.log( isAuthenticated );
           this.errorMessage = ''
-          console.log(`El usuario se logeo correctamente`)
-          this.loginData.reset()
-          this.router.navigate(['/home'])
+
+          if( isAuthenticated ) {
+            console.log( 'Login exitoso... Redireccionando a dashboard' );
+            this.router.navigateByUrl('/dashboard');
+          }
+          else {
+            console.log( 'Login fallido... Mostrando mensaje de error' );
+            this.errorMessage = 'Credenciales invalidas';
+            this.router.navigateByUrl('/login');
+          }
+
         },
         error: (error) => {
           console.error(error)
