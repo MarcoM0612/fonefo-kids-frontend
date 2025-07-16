@@ -44,8 +44,11 @@ export class Login {
         error: (error) => {
           console.error(error)
           this.errorMessage = error.error?.error || 'Error al loguearse. Inténta nuevamente.'
-          },
-        complete: () => {this.loginData.reset()}
+          this.router.navigateByUrl('/login');
+        },
+        complete: () => {
+          this.loginData.reset()
+        }
       })
     }
   }
