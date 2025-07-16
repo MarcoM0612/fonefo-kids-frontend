@@ -1,1 +1,24 @@
-bujubu
+<h1>Lista de categorias</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for ( category of categories; track $index ) {
+      <tr>
+        <td>{{ category.name }}</td>
+        <td>{{ category.description }}</td>
+        <td>
+          <a href="#">Editar</a>
+          <a href="#" (click)="onDelete( category._id ); $event.preventDefault();">Eliminar</a>
+        </td>
+      </tr>
+    }
+
+  </tbody>
+</table>
