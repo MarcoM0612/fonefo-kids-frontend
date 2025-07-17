@@ -5,7 +5,7 @@ import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-header',
-  imports: [ RouterLink, JsonPipe ],
+  imports: [ RouterLink, ],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
