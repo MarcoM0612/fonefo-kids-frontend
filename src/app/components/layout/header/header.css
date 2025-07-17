@@ -7,6 +7,9 @@ header{
     justify-content: space-between;
     padding: 2.4rem 6.4rem;
 }
+.main-menu {
+    text-transform: uppercase;
+}
 
 nav ul{
     list-style: none;
@@ -20,6 +23,9 @@ nav ul li{
 nav ul a{
     font-family: var(--fuente-encabezado);
     color: var(--color-Dark-Charcoal);
+}
+nav ul a.link-admin{
+    color: #2C51BF;
 }
 .icoms-navbar {
     display: flex;
@@ -36,3 +42,4 @@ nav ul a{
     align-items: center;
     gap: 2rem;
 }
+

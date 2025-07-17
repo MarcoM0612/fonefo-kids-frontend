@@ -15,6 +15,7 @@ import { ProductoNuevo } from './pages/private/productos/product-new/product-new
 import { CategoryNew } from './pages/private/categories/category-new/category-new';
 import { Productos } from './pages/private/productos/product';
 import { Categories } from './pages/private/categories/categories';
+import { TipsComponent } from './pages/public/tips/tips';
 
 
 export const routes: Routes = [
@@ -24,11 +25,12 @@ export const routes: Routes = [
     { path: 'catalogo', component: Catalogo },
     { path: 'nosotros', component: Nosotros },
     { path: 'contacto', component: Contacto },
-    { path: 'dashboard', component: Dashboard, canActivate: [authGuard] },
+    { path: 'tips', component: TipsComponent },
+    { path: 'admin', component: Dashboard, canActivate: [authGuard] },
     { path: 'admin/user', component: User, canActivate: [authGuard] },
     { path: 'admin/tips', component: Tips, canActivate: [authGuard] },
     { path: 'admin/categories', component: Categories, canActivate:[authGuard]},
-    { path: 'admin/product', component: Productos, canActivate: [authGuard] },
+    { path: 'admin/products', component: Productos, canActivate: [authGuard] },
     { path: 'admin/product/new', component: ProductoNuevo, canActivate: [authGuard] },
     { path: 'admin/category/new', component: CategoryNew, canActivate: [authGuard] },
     { path: 'admin/tips/new', component: tipNewForm, canActivate: [authGuard] },

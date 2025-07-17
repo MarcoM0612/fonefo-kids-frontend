@@ -1,15 +1,23 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, of, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServices {
+  private userSubject = new BehaviorSubject<any>(false);
+  user$: Observable<any> = this.userSubject.asObservable()
+  user!: any;
 
   private apiUrl = 'http://localhost:3000/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    const user = this.getLocalStorage( 'user' )
+    if ( user ) {
+      this.userSubject.next( JSON.parse(user))
+    }
+  }
 
   loginUser(credentials: any) { // entrara un objeto con el username y uno con el password
     return this.http.post<any>('http://localhost:3000/api/login', credentials)
@@ -20,6 +28,8 @@ export class AuthServices {
           if( response && response.token && response.user ){
             this.saveLocalStorage( 'token', response.token )
             this.saveLocalStorage( 'user', JSON.stringify( response.user ) )
+            this.user = JSON.parse( localStorage.getItem( 'user' ) as any ) || {};
+            this.userSubject.next( this.user );
           }
 
           return response.token && response.user ? true : false;
@@ -36,6 +46,12 @@ export class AuthServices {
           return throwError( () => new Error( error.error ));
         })
       )
+  }
+
+  logout () {
+    this.deletelocalStorage( 'token' )
+    this.deletelocalStorage( 'user' )
+    this.userSubject.next(null);
   }
 
   saveLocalStorage( key: string, value: any ){
@@ -80,5 +96,9 @@ export class AuthServices {
 
   registerUser(credentials: any){
     return this.http.post(`${this.apiUrl}/register`, credentials)
+  }
+
+  getLocalStorage ( key: string ) {
+    return localStorage.getItem( key ) || '';
   }
 }

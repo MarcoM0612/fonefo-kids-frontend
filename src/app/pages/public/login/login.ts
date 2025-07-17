@@ -31,8 +31,8 @@ export class Login {
           this.errorMessage = ''
 
           if( isAuthenticated ) {
-            console.log( 'Login exitoso... Redireccionando a dashboard' );
-            this.router.navigateByUrl('/dashboard');
+            console.log( 'Login exitoso... Redireccionando a admin' );
+            this.router.navigateByUrl('/admin');
           }
           else {
             console.log( 'Login fallido... Mostrando mensaje de error' );

@@ -1,13 +1,23 @@
 <div class="main-container">
+    <pre>{{ userLogged | json }}</pre>
+    <h1>{{ userLogged?.role }}</h1>
+    <h2>{{ !!userLogged }}</h2>
+
     <header>
         <img src="assets/imges/Logo.png " alt="Logo Fonefo Kids">
         <nav>
             <ul class="main-menu">
-                <li><a routerLink="home">INICIO</a></li>
-                <li> <a routerLink="catalogo">CATÁLOGO</a></li>
-                <li> <a routerLink="nosotros">NOSOTROS</a></li>
-                <li> <a routerLink="admin/tips">TIPS</a></li>
-                <li> <a routerLink="contacto">CONTACTO</a></li>
+                <li><a routerLink="home">Inicio</a></li>
+                <li> <a routerLink="catalogo">Catálogo</a></li>
+                <li> <a routerLink="nosotros">Nosotros</a></li>
+                <li> <a routerLink="tips">Tips</a></li>
+                @if( !!userLogged && userLogged.role == 'admin' ) {
+                    <li> <a class="link-admin" routerLink="admin/products">Productos</a></li>
+                    <li> <a class="link-admin" routerLink="admin/categories">Categorias</a></li>
+                    <li> <a class="link-admin" routerLink="admin/tips">Tips</a></li>
+                }
+                
+                <li> <a routerLink="contacto">Contacto</a></li>
                 <li> <a class="btn btn-outline-primary btn-login" (click)="logout()">Logout</a></li>
             </ul>
         </nav>
