@@ -1,47 +1,54 @@
-    <h1>Lista de Productos</h1>
-    <a href="#" routerLink="/admin/product/new" >Crea nuevo producto</a>
-<table border="1">
-    <thead>
-        <tr>
-            <th>
-                Imagen
-            </th>
-            <th>
-                Nombre
-            </th>
-            <th>
-                Descripcion
-            </th>
-            <th>
-                Precio
-            </th>
-            <th>
-                Stoke
-            </th>
-            <th>
-                Categoria
-            </th>
-            <th>
-                Acciones
-            </th>
+<h1>Lista de Productos</h1>
+<a href="#" routerLink="/admin/product/new">Crea nuevo producto</a>
 
-        </tr>
-    </thead>
-    <tbody>
-        @for (item of products; track $index) {
-        <tr>
-            <td>{{item.urlImage}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.description}}</td>
-            <td>{{item.price}}</td>
-            <td>{{item.stock}}</td>
-            <td>{{item.category.name}}</td>
-            <td>
-                <a class="btn btn-primary" href="#">Edit</a>
-                <a class="btn btn-secondy" (click)="onDelete( item._id ); $event.preventDefault()" href="#">Delete</a>
-            </td>
-        </tr>
-        }
+@if( products.length > 0 ) {
+    <table border="1">
+        <thead>
+            <tr>
+                <th>
+                    Imagen
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Descripcion
+                </th>
+                <th>
+                    Precio
+                </th>
+                <th>
+                    Stoke
+                </th>
+                <th>
+                    Categoria
+                </th>
+                <th>
+                    Acciones
+                </th>
 
-    </tbody>
-</table>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of products; track $index) {
+            <tr>
+                <td>{{item.urlImage}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.stock}}</td>
+                <td>{{item.category.name}}</td>
+                <td>
+                    <a class="btn btn-primary" href="#">Edit</a>
+                    <a class="btn btn-secondy" (click)="onDelete( item._id ); $event.preventDefault()" href="#">Delete</a>
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+}
+@else {
+    <p>No hay productos registrados</p>
+}
+

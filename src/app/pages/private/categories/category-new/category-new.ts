@@ -12,8 +12,12 @@ import { Router } from '@angular/router';
 export class CategoryNew {
   formData!:FormGroup;
 
-  constructor( private categoryService: Categoria, private router: Router ){
-    // Declarar formulario donde se van a agrupar los campos 
+
+  constructor(
+    private categoryService: Categoria,
+    private router: Router
+  ){
+    // Declarar formulario donde se van a agrupar los camposc7d88200cff838bd4aef22714140e529ff00c78
     this.formData = new FormGroup ({
 
       name: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
@@ -23,8 +27,8 @@ export class CategoryNew {
   }
 
   onSubmit(){
-    // Verificando si el formulario es valido. 
-    if ( this.formData.valid){  
+    // Verificando si el formulario es valido.
+    if ( this.formData.valid){
       console.log( this.formData.value );
 
         this.categoryService.registerCatergorie( this.formData.value ).subscribe({

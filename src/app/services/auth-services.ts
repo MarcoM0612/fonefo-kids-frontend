@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, of } from 'rxjs';
+import { catchError, map, of, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,30 @@ export class AuthServices {
   constructor(private http: HttpClient) { }
 
   loginUser(credentials: any) { // entrara un objeto con el username y uno con el password
-    return this.http.post('http://localhost:3000/api/login', credentials)
+    return this.http.post<any>('http://localhost:3000/api/login', credentials)
+      .pipe(
+        map( ( response ) => {
+          console.log( response );
+
+          if( response && response.token && response.user ){
+            this.saveLocalStorage( 'token', response.token )
+            this.saveLocalStorage( 'user', JSON.stringify( response.user ) )
+          }
+
+          return response.token && response.user ? true : false;
+        }),
+        catchError( ( error ) => {
+          console.error( error );
+
+          if( error.status === 401 ) {
+            console.error( error.error.msg );
+
+            return throwError( () => new Error( error.error.msg || 'Credenciales invalidas' ));
+          }
+
+          return throwError( () => new Error( error.error ));
+        })
+      )
   }
 
   saveLocalStorage( key: string, value: any ){
@@ -27,7 +50,7 @@ export class AuthServices {
   //verifica al usuario autenticado
   verifyAuthenticateUser(){
     return this.http.get('http://localhost:3000/api/auth/re-new-token', {headers: this.getHeaders()}).pipe(
-      map( ( data: any ) => { 
+      map( ( data: any ) => {
         console.log( 'service ', data )
         return data.token
       }),
@@ -47,7 +70,7 @@ export class AuthServices {
     // catchError(() => {
     //   return of( false )
     // })
-    // ) 
+    // )
   }
 
   getHeaders(){

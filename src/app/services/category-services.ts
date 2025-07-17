@@ -7,7 +7,7 @@ import { AuthServices } from './auth-services';
 })
 export class Categoria {
 
-  constructor( private http: HttpClient, private authService: AuthServices ) { 
+  constructor( private http: HttpClient, private authService: AuthServices ) {
 
   }
 
@@ -16,7 +16,7 @@ export class Categoria {
   }
 
   getCategories (){
-    return this.http.get('http://localhost:3000/api/categories')
+    return this.http.get<any>('http://localhost:3000/api/categories', { headers: this.authService.getHeaders() })
   }
 
   getCategorieById( id: string ){
@@ -24,7 +24,7 @@ export class Categoria {
   }
 
   deleteCategorieById( id: string ){
-    return this.http.delete('http://localhost:3000/api/categories/' +id ,{ headers: this.authService.getHeaders() } ) 
+    return this.http.delete('http://localhost:3000/api/categories/' +id ,{ headers: this.authService.getHeaders() } )
   }
 
   updateCategorieById( id: string, updatedCategorie: any ){
