@@ -1,18 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, tap, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServices {
+  environment: any
   private userSubject = new BehaviorSubject<any>(false);
   user$: Observable<any> = this.userSubject.asObservable()
   user!: any;
 
-  private apiUrl = 'http://localhost:3000/api';
-
   constructor(private http: HttpClient) { 
+    this.environment = environment;
+
     const user = this.getLocalStorage( 'user' )
     if ( user ) {
       this.userSubject.next( JSON.parse(user))
@@ -20,7 +22,7 @@ export class AuthServices {
   }
 
   loginUser(credentials: any) { // entrara un objeto con el username y uno con el password
-    return this.http.post<any>('http://localhost:3000/api/login', credentials)
+    return this.http.post<any>(`${this.environment.apiUrl}/login`, credentials)
       .pipe(
         map( ( response ) => {
           console.log( response );
@@ -65,7 +67,7 @@ export class AuthServices {
 
   //verifica al usuario autenticado
   verifyAuthenticateUser(){
-    return this.http.get('http://localhost:3000/api/auth/re-new-token', {headers: this.getHeaders()}).pipe(
+    return this.http.get( `${this.environment.apiUrl}/auth/re-new-token`, {headers: this.getHeaders()}).pipe(
       map( ( data: any ) => {
         console.log( 'service ', data )
         return data.token
@@ -76,7 +78,7 @@ export class AuthServices {
     )
 
     //Ejemplo para explicar xrjs
-    // return this.http.get('http://localhost:3000/api/auth/re-new-token', {headers: this.getHeaders()}).pipe( tap ( ( data ) => {
+    // return this.http.get('`${ this.enviroment.apiUrl }`/auth/re-new-token', {headers: this.getHeaders()}).pipe( tap ( ( data ) => {
     //   console.log( data )
     //   return data
     // }),
@@ -95,7 +97,7 @@ export class AuthServices {
   }
 
   registerUser(credentials: any){
-    return this.http.post(`${this.apiUrl}/register`, credentials)
+    return this.http.post(`${this.environment.apiUrl}/register`, credentials)
   }
 
   getLocalStorage ( key: string ) {
