@@ -32,8 +32,10 @@ export class Register {
   onSubmit(){
     if(this.registerData.valid){
       this.authService.registerUser(this.registerData.value).subscribe({
-        next: () => {
-          console.log('El usuario se registro correctamente')
+        next: ( data ) => {
+          console.log('El usuario se registro correctamente');
+          console.log(data);
+
           this.router.navigate(['login'])
           this.registerData.reset()
         },
