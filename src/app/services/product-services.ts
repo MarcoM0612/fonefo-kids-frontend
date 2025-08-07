@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthServices } from './auth-services';
 import { environment } from '../../environments/environment';
+import { ProductInterface } from '../interfaces/product-interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,29 +15,26 @@ export class Producto {
     this.environment = environment
   }
 
-    registerProduct ( newProduct: any ) {
+    registerProduct ( newProduct: ProductInterface ) : Observable<ProductInterface> {
       console.log( newProduct )
-      return this.http.post( `${ this.environment.apiUrl }/product`, newProduct, { headers: this.authService.getHeaders() } )
+      return this.http.post <ProductInterface>( `${ this.environment.apiUrl }/product`, newProduct, { headers: this.authService.getHeaders() } )
     }
 
-    getCategorieById( id: string ){
-    return this.http.get(`${ this.environment.apiUrl }/product/` + id, { headers: this.authService.getHeaders() } )
+    getCategorieById( id: string ) : Observable<ProductInterface>{
+    return this.http.get <ProductInterface> (`${ this.environment.apiUrl }/product/` + id, { headers: this.authService.getHeaders() } )
   }
 
-    getProduct () {
-      return this.http.get <any> ( `${ this.environment.apiUrl }/product`)
+    getProduct () : Observable<Array<ProductInterface>>{
+      return this.http.get <Array<ProductInterface>> ( `${ this.environment.apiUrl }/product`)
     }
     
-    deleteProduct ( id: string ){
-      return this.http.delete( `${ this.environment.apiUrl }/product/` + id, { headers: this.authService.getHeaders() } )
+    deleteProduct ( id: string ) : Observable<ProductInterface> {
+      return this.http.delete <ProductInterface> ( `${ this.environment.apiUrl }/product/` + id, { headers: this.authService.getHeaders() } )
     }
 
-    updateCategorieById( id: string, updatedProduct: any ){
-    return this.http.patch(`${ this.environment.apiUrl }/product/` +id , updatedProduct ,{ headers: this.authService.getHeaders() } )
+    updateCategorieById( id: string, updatedProduct: ProductInterface  ) : Observable<ProductInterface> {
+    return this.http.patch < ProductInterface > (`${ this.environment.apiUrl }/product/` +id , updatedProduct ,{ headers: this.authService.getHeaders() } )
   }
-
-
-
 
 
   
